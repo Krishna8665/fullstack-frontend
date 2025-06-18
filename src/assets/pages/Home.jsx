@@ -25,7 +25,7 @@ function Home() {
             books.map(function (book) {
               return (
 
-                <Card book={book}/>
+                <Card book={book} key={book.id}/>
               )
 
             })

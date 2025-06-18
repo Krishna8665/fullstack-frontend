@@ -1,8 +1,6 @@
-import React from 'react'
-
-const Button = () => {
+function Button({ title, deleteFunctionHo }) {
   return (
-    <button className='bg-green-400'>Login</button>
+    <button onClick={deleteFunctionHo} className='bg-green-400'>{title}</button>
   )
 }
 

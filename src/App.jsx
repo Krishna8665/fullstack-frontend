@@ -15,7 +15,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
         <Route path='/contact' element={<Contact />} />
-        <Route path='/single-page' element={<SinglePage />} />
+        <Route path='/single-page/:id'  element={<SinglePage />} />
         <Route path='/create-page' element={<CreatePage />} />
         <Route path='/edit-page' element={<EditPage />} />
       </Routes>
