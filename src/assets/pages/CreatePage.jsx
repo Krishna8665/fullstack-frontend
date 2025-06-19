@@ -1,8 +1,11 @@
 import { useState } from "react"
 import Navbar from "../components/Navbar"
+import axios from "axios"
+import { useNavigate } from "react-router-dom"
 
 
 function CreatePage() {
+    const navigate = useNavigate()
     //first approach
     // const [bookName, setBookname] = useState("")
     // const [bookGenre, setBookgenre] = useState("")
@@ -15,7 +18,7 @@ function CreatePage() {
         bookName : "",
         bookGenre : "",
         bookAuthor : "",
-        bookPrice : ""
+        price : ""
 
     })
 
@@ -34,7 +37,22 @@ function CreatePage() {
        })
 
     }
-    console.log(bookData)
+    //console.log(bookData)
+
+    const submitData = async (event)=>{
+        event.preventDefault()
+       // console.log("data submit vayo")
+        //mathi state ma vako data lai api lai dine --localhost:3000/api/books  - post method
+        //post garda duita pathaunai paryo , pathaune data ko format always object hunu parcah, jun at the end axios le json ma convert garera pathaidincha
+        const response = await axios.post("http://localhost:3000/api/books",bookData)
+        if (response.status === 200){
+            alert("book added successfully")
+            navigate("/")
+            
+        }else{
+            alert("something went wrong")
+        }
+    }
 
 
     return (
@@ -50,7 +68,7 @@ function CreatePage() {
                     </button>
                 </div>
                 <div className="p-6 space-y-6">
-                    <form action="#">
+                    <form onSubmit={submitData}>
                         <div className="grid grid-cols-6 gap-6">
                             <div className="col-span-6 sm:col-span-3">
                                 <label htmlFor="product-name" className="text-sm font-medium text-gray-900 block mb-2">Book Name</label>
@@ -73,11 +91,12 @@ function CreatePage() {
           <te        xtarea id="product-details" rows={6} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-4" placeholder="Details" defaultValue={""} />
         </div> */}
                         </div>
+                          <div className="p-6 border-t border-gray-200 rounded-b">
+                    <button className="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center " type="submit">Save all</button>
+                </div>
                     </form>
                 </div>
-                <div className="p-6 border-t border-gray-200 rounded-b">
-                    <button className="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="submit">Save all</button>
-                </div>
+              
             </div>
 
         </>
