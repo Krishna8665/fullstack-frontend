@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import Navbar from "../components/Navbar"
 import { useEffect, useState } from "react"
 import axios from "axios"
@@ -36,7 +36,9 @@ function SinglePage() {
             <h1>{book.bookName}</h1>
             <p>{book.price}</p>
             <p>{book.bookAuthor}</p>
-            <Button deleteFunctionHo={deleteBook} />
+            {/* <Button deleteFunctionHo={deleteBook} /> */}
+            <button onClick ={deleteBook}>Delete Me</button>
+            <Link to={`/edit-page/${id}`}><button >Edit ME</button></Link>
 
         </div>
     )
