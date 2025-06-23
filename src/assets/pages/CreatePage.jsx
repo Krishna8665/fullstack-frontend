@@ -14,7 +14,7 @@ function CreatePage() {
     // console.log(bookName,bookGenre,bookAuthor,bookPrice)
 
     //Second Approach
-    const [bookData,setBookData] = useState({
+    const [bookData,setBookData] = useState({  //manually data decham aaile hamle tala field diyera
         bookName : "",
         bookGenre : "",
         bookAuthor : "",
