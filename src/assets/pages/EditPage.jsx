@@ -1,10 +1,21 @@
+import { useParams } from "react-router-dom"
 import Form from "../components/Form"
 import Navbar from "../components/Navbar"
+import { useEffect, useState } from "react"
+import axios from "axios"
 
 const EditPage= () => {
-  console.log(
-    "hello world"
-  )
+  const { id } = useParams()//used to get the parameter of route 
+    const [book, setBook] = useState({
+
+    })
+    const fetchBook = async () => {
+        const response = await axios.get("http://localhost:3000/api/books/" + id)
+        setBook(response.data.datas)
+    }
+    useEffect(() => {
+        fetchBook()
+    }, [])
   return (
     <div>
       <Navbar/>
@@ -43,7 +54,7 @@ const EditPage= () => {
         </div> */}
                         </div>
                           <div className="p-6 border-t border-gray-200 rounded-b">
-                    <button className="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center " type="submit">Save all</button>
+                    <button className="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center " type="submit">Edit all</button>
                 </div>
                     </form>
                 </div>
